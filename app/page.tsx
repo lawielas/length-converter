@@ -12,9 +12,9 @@ export default function Home() {
   const [km, setKm] = useState(0)
   let inputUnit: string
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
-    setValue(e.target.value)
+    setValue(e.currentTarget.value)
   }
 
   const handleEnter = () => {
@@ -25,11 +25,7 @@ export default function Home() {
     console.log(inputNumber)
   }
 
-  const handleKeyPress = (e) => {
-    if(e.keyCode === 13 || e.which === 13) {
-      handleEnter()
-    }
-  }
+  
 
   const handleCMtoMM = () => {
     setMm(inputNumber*10)
@@ -56,7 +52,7 @@ export default function Home() {
       <h1 className="text-2xl">Welcome to my length converter that Hauwau Kudu Muhammad of Niger State refused to do!</h1>
       <p className="text-lg">Please enter a length in this format <span className="text-red-600">&apos;10cm&apos;</span>, <span className="text-red-600">&apos;10mm&apos;</span> and <span className="text-red-600">&apos;10km&apos;</span></p> 
       <fieldset className="bg-gray-100 shadow-xl">
-        <input type="text" className="bg-inherit p-4 outline-none" placeholder='Enter length' onChange={handleChange} onKeyDown={handleKeyPress} />
+        <input type="text" className="bg-inherit p-4 outline-none" placeholder='Enter length' onChange={handleChange} />
         <button onClick={handleEnter} className="bg-green-400 p-4">Enter</button>
       </fieldset>
       <div>
@@ -74,22 +70,22 @@ export default function Home() {
         </div>}
         {unitAsk === 'mm' && 
         <div className="flex flex-col gap-4 ">
-          <div className="bg-gray-100 rounded-xl flex flex-col items-center p-3 w-3/6 gap-3">
+          <div className="bg-gray-100 rounded-xl flex flex-col items-center p-3 gap-3">
             <button onClick={handleMMtoCM} className=" bg-gray-500 p-3 text-white">cm</button>
             <div className="text-base">{cm}cm</div>
           </div>
-          <div className="bg-gray-100 rounded-xl flex flex-col items-center p-3 w-3/6 gap-3">
+          <div className="bg-gray-100 rounded-xl flex flex-col items-center p-3 gap-3">
             <button onClick={handleMMtoKM} className=" bg-gray-500 p-3 text-white">km</button>
             <div className="text-base">{km}km</div>
           </div>
         </div>}
         {unitAsk === 'km' && 
         <div className="flex flex-col gap-4">
-          <div className="bg-gray-100 rounded-xl flex flex-col items-center p-3 w-3/6 gap-3">
+          <div className="bg-gray-100 rounded-xl flex flex-col items-center p-3 gap-3">
             <button onClick={handleKMtoCM} className=" bg-gray-500 p-3 text-white">cm</button>
             <div className="text-base">{cm}cm</div>
           </div>
-          <div className="bg-gray-100 rounded-xl flex flex-col items-center p-3 w-3/6 gap-3">
+          <div className="bg-gray-100 rounded-xl flex flex-col items-center p-3 gap-3">
             <button onClick={handleKMtoMM} className=" bg-gray-500 p-3 text-white">mm</button>
             <div className="text-base">{mm}mm</div>
           </div>
